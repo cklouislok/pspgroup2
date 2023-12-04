@@ -36,9 +36,12 @@ if elevation >45 and elevation <1000: #figure out why this wont work it jusmps r
 else:
         print("Elevation invalid")
 
-'''I dont know what we wan to do with the display if i just mark out the numbers or are we suposed toshow the coordinates, i assume the exported file has that stuff in it
-these are some of the display ideas i had'''
-# else:
-# print ("Flight Height(M)\t Number of Laps\t Total Pictures Taken") 
-# print (str(flightHeight), '\t\t\t', str(numberLaps), '\t\t\t', str(numberPhotos) )
-# print ("your flight height is: " flightHeight, "the Number of Laps made", numberLaps, "the total number of pictures taken for this survey: " total photographs taken)
+
+
+#display at end of Def functions
+
+
+print ("your flight height is: " flightHeight,)
+print("the Number of Laps made", numberLaps")
+print("the total number of pictures taken for this survey: " total photographs taken) 
+#still need to change the variable names so they match the other variables 
