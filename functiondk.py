@@ -67,7 +67,8 @@ def calFlightHeight(PhotoScale):
     return FlightHeightRelativeToGroundElevation
 
 def  calAirbase(ImageGroundCoverageLength,endLap):
-    Airbase=ImageGroundCoverageLength*((50+50-PercentageOfendLap)/100):
+    Airbase=ImageGroundCoverageLength*((50+50-PercentageOfendLap)/100)
+    
     return Airbase
 
 
@@ -75,7 +76,7 @@ def calNoOfPhotoIn1FlightLine(surveyAreaLength,Airbase):
     NoOfPhotoIn1FlightLine=round((surveyAreaLength/Airbase)+1)
     return NoOfPhotoIn1FlightLine
 
-def calFlightLineSpacing()
+def calFlightLineSpacing():
  FlightLineSpacing=ImageGroundCoverageWidth * ((50 + 50 - PercentageOfSideLap) / 100)
  return flightLineSpacing
 
