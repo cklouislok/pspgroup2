@@ -40,8 +40,10 @@ else:
 
 #display at end of Def functions
 
-
-print ("your flight height is: " flightHeight,)
-print("the Number of Laps made", numberLaps")
-print("the total number of pictures taken for this survey: " total photographs taken) 
+print("The survey, ", projectTitle)
+print ("The survey was done, ", planDate)
+print("Surveyors name: ", surveyprName)
+print ("Your flight height is: ", flightHeight)
+print("The number of Laps made", numberLaps")
+print("the total number of pictures taken for this survey: ", total photographs taken) 
 #still need to change the variable names so they match the other variables 
