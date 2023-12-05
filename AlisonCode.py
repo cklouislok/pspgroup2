@@ -2,7 +2,7 @@
 # date stared: November 25, 2023
 #Last Modified: december 05, 2023
 #Created by Alison Cooke, for Group 2 section 61 GEOM 67
-#this sectino of code is for elevation, photoscale, endlap and sidelap input from the user
+#this section of code is for elevation, photoscale, endlap and sidelap input from the user
 
 #get input from user, must be in meters and within a range o 45 meters and 450 meters becasue that is the 
 #elevation numbers taken from this site https://en-ca.topographic-map.com/map-kc957/Canada/?center=44.19894%2C-78.61679&zoom=10&popup=49.55373%2C-49.43848
@@ -40,11 +40,11 @@ else:
 
 #display at end of Def functions
 
-print("The survey, ", projectTitle)
-print ("The survey was done, ", planDate)
-print("Surveyors name: ", surveyprName)
-#displaying the name date and title of the survey before the resulting height, number of photos and number of laps
-print ("Your flight height is: ", fcalFlightHeight)
-print ("The number of Laps made", numberLaps) #is this number of lines or number of laps taken?
-print ("the total number of pictures taken for this survey: ", totalphotographstaken) 
-#still need to change the variable names so they match the other variables 
+# print("The survey, ", projectTitle)
+# print ("The survey was done, ", planDate)
+# print("Surveyors name: ", surveyprName)
+# #displaying the name date and title of the survey before the resulting height, number of photos and number of laps
+# print ("Your flight height is: ", fcalFlightHeight)
+# print ("The number of Laps made", numberLaps) #is this number of lines or number of laps taken?
+# print ("the total number of pictures taken for this survey: ", totalphotographstaken) 
+# #still need to change the variable names so they match the other variables 

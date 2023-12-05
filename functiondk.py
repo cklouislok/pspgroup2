@@ -101,8 +101,8 @@ def calStartEndCoordinates():
 
 ### DISPLAY program’s purpose
 # Display program's purpose
-programPurpose = "This program is developed to resolve the problem of incomplete data collection aerial surveys and produce an explicit flight plan for surveyors to follow. It focuses on aerial photogrammetry by Unmanned Aerial Vehicles (UAVs), in particular rotary-wing UAVs, in combination with an aircraft-hinged camera. The primary output of the program are the aircraft flying height, number of flight lines, minimum number of aerial photographs, as well as the start and end coordinates of each flight line, so that users can follow the programmed flight plan to accurately survey and measure the terrain."
-print(programPurpose)
+    programPurpose = "This program is developed to resolve the problem of incomplete data collection aerial surveys and produce an explicit flight plan for surveyors to follow. It focuses on aerial photogrammetry by Unmanned Aerial Vehicles (UAVs), in particular rotary-wing UAVs, in combination with an aircraft-hinged camera. The primary output of the program are the aircraft flying height, number of flight lines, minimum number of aerial photographs, as well as the start and end coordinates of each flight line, so that users can follow the programmed flight plan to accurately survey and measure the terrain."
+    print(programPurpose)
 
 ### DISPLAY programmer-defined values of camera sensor length and lens focal length using List
 # (to be completed)
@@ -121,8 +121,8 @@ surveyorName = input("Please enter the name of the surveyor: ")
 bottomLeftUTM = input("Please enter the Easting and Northing of the bottom left corner of the surveyed are in UTM format (XXXXXX.XX, YYYYYYY.YY): ")
 
 ### STRING MANIPULATION to store easting and northing of bottom left corner separately
-eastingBottomLeft = int(
-northingBottomLeft = int(
+eastingBottomLeft = int()
+northingBottomLeft = int()
 # (to be completed)
 
 ### DISPLAY a prompt message for input
@@ -131,8 +131,8 @@ northingBottomLeft = int(
 topRightUTM = input("Please enter the Easting and Northing of the top right corner of the surveyed are in UTM format (XXXXXX.XX, YYYYYYY.YY): ")
 
 ### STRING MANIPULATION to store easting and northing of top right corner separately
-eastingTopRight = int(
-northingTopRight = int(
+eastingTopRight = int()
+northingTopRight = int()
 # (to be completed)
 
 # Difference in 
@@ -208,5 +208,5 @@ print("The ground area coverage of one aerial photo is: " + str(imageGroundAreaC
 flightLineSpacing = imageGroundLength_m * ((50 + 50 - sideLap) / 100)
 
 # Number of flight lines
-num_flightLines = math.ceil((surveyAreaLength - imageGroundLength_m) / flightLineSpacing) / flightLineSpacing)
+num_flightLines = math.ceil((surveyAreaLength - imageGroundLength_m) / flightLineSpacing) / (flightLineSpacing)
 

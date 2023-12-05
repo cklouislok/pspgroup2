@@ -256,7 +256,7 @@ print("The ground area coverage of one aerial photo is: " + str(imageGroundAreaC
 flightLineSpacing = imageGroundLength_m * ((50 + 50 - sideLap) / 100)
 
 # Number of flight lines
-num_flightLines = math.ceil((surveyAreaLength - imageGroundLength_m) / flightLineSpacing) / flightLineSpacing)
+num_flightLines = math.ceil((surveyAreaLength - imageGroundLength_m) / flightLineSpacing) / (flightLineSpacing)
 
 
 #*************************************************************************************************************************#
