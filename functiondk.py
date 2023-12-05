@@ -108,51 +108,51 @@ else:
 # def calSurveyedAreaSize(EastingDistance,NorthingDistance):
 #     AreaOfSurveyedLand = EastingDistance * NorthingDistance
 #     return AreaOfSurveyedLand
-# def calImageGroundCoverageLength(PhotoScale):
-#     ImageGroundCoverageLength = SensorLength/PhotoScale 
-#     return calImageGroundCoverageLength
+def calImageGroundCoverageLength(PhotoScale):
+    ImageGroundCoverageLength = SensorLength/PhotoScale 
+    return calImageGroundCoverageLength
 
-# def calImageGroundCoveragewidth(PhotoScale):
-#     ImageGroundCoverageWidth=sensorWidth / PhotoScale
-#     return ImageGroundCoverageWidth
+def calImageGroundCoveragewidth(PhotoScale):
+    ImageGroundCoverageWidth=sensorWidth / PhotoScale
+    return ImageGroundCoverageWidth
     
 
-# def calImageGroundCoverageArea(ImageGroundCoverageLength):
-#     ImageGroundCoverageArea = ImageGroundCoverageLength**2 
-#     return ImageGroundCoverageArea
-# # Flying Height relative to ground elevation = Focal Length of camera ÷ Photo Scale 
+def calImageGroundCoverageArea(ImageGroundCoverageLength):
+    ImageGroundCoverageArea = ImageGroundCoverageLength**2 
+    return ImageGroundCoverageArea
+# Flying Height relative to ground elevation = Focal Length of camera ÷ Photo Scale 
 
-# # Flying Height relative to mean sea level = Flying Height relative to ground elevation + Ground
+# Flying Height relative to mean sea level = Flying Height relative to ground elevation + Ground
 
-# def calFlightHeight(PhotoScale):
-#     FlightHeightRelativeToGroundElevation=focalLength/PhotoScale
-#     FlightHeightRelativeToMeanSeaLevel=FlightHeightRelativeToGroundElevation+Groundelevation
-#     return FlightHeightRelativeToGroundElevation
+def calFlightHeight(PhotoScale):
+    FlightHeightRelativeToGroundElevation=focalLength/PhotoScale
+    FlightHeightRelativeToMeanSeaLevel=FlightHeightRelativeToGroundElevation+Groundelevation
+    return FlightHeightRelativeToGroundElevation
 
-# def  calAirbase(ImageGroundCoverageLength,endLap):
-#     Airbase=ImageGroundCoverageLength*((50+50-PercentageOfendLap)/100)
+def  calAirbase(ImageGroundCoverageLength,endLap):
+    Airbase=ImageGroundCoverageLength*((50+50-PercentageOfendLap)/100)
     
-#     return Airbase
+    return Airbase
 
 
-# def calNoOfPhotoIn1FlightLine(surveyAreaLength,Airbase):
-#     NoOfPhotoIn1FlightLine=round((surveyAreaLength/Airbase)+1)
-#     return NoOfPhotoIn1FlightLine
+def calNoOfPhotoIn1FlightLine(surveyAreaLength,Airbase):
+    NoOfPhotoIn1FlightLine=round((surveyAreaLength/Airbase)+1)
+    return NoOfPhotoIn1FlightLine
 
-# def calFlightLineSpacing():
-#  FlightLineSpacing=ImageGroundCoverageWidth * ((50 + 50 - PercentageOfSideLap) / 100)
-#  return flightLineSpacing
+def calFlightLineSpacing():
+ FlightLineSpacing=ImageGroundCoverageWidth * ((50 + 50 - PercentageOfSideLap) / 100)
+ return flightLineSpacing
 
-# def calNoOfFlightLines(surveyAreaWidth,flightLineSpacing):
-#     NoOfFlightLines=Round((SurveyedAreaWidth / FlightLineSpacing) + 1 )
-#     return NoOfFlightLines
+def calNoOfFlightLines(surveyAreaWidth,flightLineSpacing):
+    NoOfFlightLines=Round((SurveyedAreaWidth / FlightLineSpacing) + 1 )
+    return NoOfFlightLines
 
 
-# def calTotalNoOfPhoto(NoOfPhotoIn1FlightLine,calNoOfFlightLines):
-#    TotalNoOfPhoto=NoOfPhotoIn1FlightLine*NoOfFlightLines
-#    return TotalNoOfPhoto
+def calTotalNoOfPhoto(NoOfPhotoIn1FlightLine,calNoOfFlightLines):
+   TotalNoOfPhoto=NoOfPhotoIn1FlightLine*NoOfFlightLines
+   return TotalNoOfPhoto
 
-# def calStartEndCoordinates():
+
 
 
 
