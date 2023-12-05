@@ -44,7 +44,7 @@ print("The survey, ", projectTitle)
 print ("The survey was done, ", planDate)
 print("Surveyors name: ", surveyprName)
 #displaying the name date and title of the survey before the resulting height, number of photos and number of laps
-print ("Your flight height is: ", flightHeight)
-print("The number of Laps made", numberLaps")
-print("the total number of pictures taken for this survey: ", total photographs taken) 
+print ("Your flight height is: ", fcalFlightHeight)
+print ("The number of Laps made", numberLaps) #is this number of lines or number of laps taken?
+print ("the total number of pictures taken for this survey: ", totalphotographstaken) 
 #still need to change the variable names so they match the other variables 
