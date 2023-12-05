@@ -1,6 +1,6 @@
 #Aerial Survey Flight Plan
 # date stared: November 25, 2023
-#Last Modified: december 01, 2023
+#Last Modified: december 05, 2023
 #Created by Alison Cooke, for Group 2 section 61 GEOM 67
 #this sectino of code is for elevation, photoscale, endlap and sidelap input from the user
 
@@ -16,8 +16,8 @@ else:
     elevationFt = float(input ("what is the elevation in feet? "))
     elevation = elevationFt * 0.3048
    
-if elevation >45 and elevation <1000: #figure out why this wont work it jusmps right to give photo scale
-        photoScale = int(input("Please give you desired photo scale: ")) #are we asking them for their photo scale or are we making a defined function for that?
+if elevation >45 and elevation <1000: 
+        photoScale = int(input("Please give you desired photo scale: ")) 
         
         endlap = float(input("Please give desired endlap in percent: "))
         if endlap <1 or endlap >100:
@@ -43,6 +43,7 @@ else:
 print("The survey, ", projectTitle)
 print ("The survey was done, ", planDate)
 print("Surveyors name: ", surveyprName)
+#displaying the name date and title of the survey before the resulting height, number of photos and number of laps
 print ("Your flight height is: ", flightHeight)
 print("The number of Laps made", numberLaps")
 print("the total number of pictures taken for this survey: ", total photographs taken) 
