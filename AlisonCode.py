@@ -19,13 +19,13 @@ else:
 if elevation >45 and elevation <1000: 
         photoScale = int(input("Please give you desired photo scale: ")) 
         
-        endlap = float(input("Please give desired endlap in percent: "))
+        endlap = int(input("Please give desired endlap in percent: "))
         if endlap <1 or endlap >100:
                 print("endlap invalid")
     
         else: 
                 
-            sidelap = float(input("Please give desired sidelap in percent: "))
+            sidelap = int(input("Please give desired sidelap in percent: "))
        
             if sidelap <1 or sidelap >100:
               print("Side lap invalid")
