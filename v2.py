@@ -1,84 +1,101 @@
 import math
 
-### SET sensorLength and focalLength = constant
-# Define camera sensor length and width (in mm)
-# Camera sensor size = 24 mm × 24 mm, which is the maximum 1:1 size of a full frame sensor. Note: a standard 35 mm full frame sensor has dimensions of 36 mm × 24 mm.
-sensorLength = 24  #in mm
-# Define camera lens focal length (in mm)
-# Focal length of camera lens = 152 mm, typically used for aerial photogrammetry suggested by NRCan and USGS. (NRCan source: https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/satellites-and-sensors/cameras-and-aerial-photography/9351. USGS source: https://www.usgs.gov/faqs/how-much-area-does-aerial-photograph-cover. )
-focalLength = 152 #in mm
-# def(sensor_focal):                                                #remove
-#     sensor_focal.sensorlength=sensor_focal.sensorLength           #remove
-#     sensor_focal.focallength=sensor_focal.focalLength             #remove
 
-# ### DISPLAY program’s purpose
-# # Display program's purpose
-programPurpose = "This program is developed to resolve the problem of incomplete data collection aerial surveys and produce an explicit flight plan for surveyors to follow. \
- It focuses on aerial photogrammetry by Unmanned Aerial Vehicles (UAVs), in particular rotary-wing UAVs, in combination with an aircraft-hinged camera. The primary output \
- of the program are the aircraft flying height, number of flight lines, minimum number of aerial photographs, as well as the start and end coordinates of each flight line, \
- so that users can follow the programmed flight plan to accurately survey and measure the terrain."
+# see if it is possible to turn all user input into dictionary
+# see if possible to turn formulas into def functions
+
+
+# Program-defined data input: sensorLength, focalLength
+
+# Define camera sensor length and width (in mm)
+# Camera sensor size = 24 mm × 24 mm, which is the maximum 1:1 size of a full frame sensor. 
+# Note: a standard 35 mm full frame sensor has dimensions of 36 mm × 24 mm.
+sensorLength = 24  #in mm
+
+
+# Define camera lens focal length (in mm)
+# Focal length of camera lens = 152 mm, typically used for aerial photogrammetry suggested by NRCan and USGS. 
+# (NRCan source: https://natural-resources.canada.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/satellites-and-sensors/cameras-and-aerial-photography/9351. 
+# USGS source: https://www.usgs.gov/faqs/how-much-area-does-aerial-photograph-cover. )
+focalLength = 152 #in mm
+
+
+# Display program's purpose
+programPurpose = "This program is developed to resolve the problem of incomplete data collection aerial surveys and \
+produce an explicit flight plan for surveyors to follow. It focuses on aerial photogrammetry by Unmanned Aerial \
+Vehicles (UAVs), in particular rotary-wing UAVs, in combination with an aircraft-hinged camera. The primary output \
+of the program are the aircraft flying height, number of flight lines, minimum number of aerial photographs, \
+as well as the start and end coordinates of each flight line, so that users can follow the programmed \
+flight plan to accurately survey and measure the terrain."
 print(programPurpose)
 
-### DISPLAY programmer-defined values of camera sensor length and lens focal length using List
+
+# Display program limitations
+programLimitations = ["The shape of the surveyed area must be a rectangle, square included.", "The diagonal point of the \
+surveyed area must have both greate Easting and Northing than the first point"]
+print("This program has the following limitations: ")
+for limitation in programLimitations:
+    print(limitation)
+
+
+# DISPLAY programmer-defined values of camera sensor length and lens focal length using List
 # cameraSettings = [sensor_focal.sensorLength,sensor_focal.focalLength]
 print("Programmer-defined sensor length:", sensorLength)
 print("focal length:", focalLength)
 
-### DISPLAY a prompt message for input
-### GET flight project title, date, and surveyor’s name
-projectTitle = input("Please enter the project title: ")
-surveyDate = input("Please enter the survey date: ")
+
+# GET flight project title, planned survey date, and surveyor’s name
+projectTitle = input("Please enter the aerial survey project title: ")
+surveyDate = input("Please enter the planned survey date: ")
 surveyorName = input("Please enter the name of the surveyor: ")
 
-### DISPLAY a prompt message for input
-### GET UTM easting and northing of bottom left corner of the surveyed area
-# Lower left corner of the surveyed area
-bottomLeftUTM = input("Please enter the Easting and Northing of the bottom left corner of the surveyed are in UTM format (XXXXXX.XX, YYYYYYY.YY): ")
-# eastingString, northingString = str[[start][:][end]]          #remove
 
-### STRING MANIPULATION to store easting and northing of bottom left corner separately
-eastingLeft = float(bottomLeftUTM[0:9])
-northingLeft = float(bottomLeftUTM[11:len(bottomLeftUTM)])
+# GET UTM easting and northing of bottom left corner of the surveyed area
+try:
+    # Lower left corner of the surveyed area
+    UTMBottomLeft = input("Please enter the Easting and Northing of the bottom left corner of the surveyed area \
+in UTM format (XXXXXX.XX, YYYYYYY.YY): ")
+    UTMTopRight = input("Please enter the Easting and Northing of the top right corner of the surveyed area \
+in UTM format (XXXXXX.XX, YYYYYYY.YY): ")
 
-# eastingString[[start][:][end]]                     #remove
-# northingLeft = northingString[[start][:][end]]     #remove
+    # Store UTMBottomLeft with Easting and Northing separated in a list
+    UTMENBottomLeft = UTMBottomLeft.split(", ")
+    UTMENTopRight = UTMTopRight.split(", ")
 
-print("The Easting of the bottom left corner =", eastingLeft)
-print("The Northing of the bottom left corner = ", northingLeft)
+    # STRING MANIPULATION to store easting and northing of bottom left and top right corners separately
+    eastingBottomLeft = float(UTMENBottomLeft[0])
+    northingBottomLeft = float(UTMENBottomLeft[1])
+    eastingTopRight = float(UTMENTopRight[0])
+    northingTopRight = float(UTMENTopRight[1])
 
-### DISPLAY a prompt message for input
-### GET UTM easting and northing of top right corner of the surveyed area
-# Top right corner of the surveyed area
-topRightUTM = input("Please enter the Easting and Northing of the top right corner of the surveyed are in UTM format (XXXXXX.XX, YYYYYYY.YY): ")
-# eastingString, northingString = str[[start] [:] [end]]      #remove
+    print("Point\t\t\tEasting\t\t\tNorthing")
+    print("Bottom Left", " \t\t" + "%.2f" % eastingBottomLeft, " \t\t" + "%.2f" % northingBottomLeft)
+    print("Top Right", " \t\t"+  "%.2f" % eastingTopRight, " \t\t" + "%.2f" % northingTopRight)
 
-### STRING MANIPULATION to store easting and northing of top right corner separately
-eastingRight = float(topRightUTM[0:9])
-northingRight = float(topRightUTM[11:len(topRightUTM)])
+except (IndexError):
+    print("Please re-run this program with and enter Easting and Northing in standard format.")
+except (ValueError):
+    print("Please re-run this program with and enter numeric values for the Easting and Northing")
 
-# eastingString[[start][:][end]]                    #remove
-# northingRight=northingString[[start][:][end]]     #remove
-
-print("The easting of the bottom right corner =", eastingRight)
-print("The northing of the bottom r corner= ", northingRight)
-
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 # Part 2
 # Conversion of Ground Area to Width and Length
-# Longitude difference between the two corners
-eastingDiff = eastingRight - eastingLeft
+# Easting difference between the two corners
+eastingDiff = eastingTopRight - eastingBottomLeft
 
-# Latitude difference between the two corners
-northingDiff = northingRight - northingLeft
+# Northing difference between the two corners
+northingDiff = northingTopRight - northingBottomLeft
 
+# Check if the given two points form a rectangle (sqaure included). If it is a line, program will be terminated.
 if eastingDiff == 0 or northingDiff == 0:
     print("The surveyed area must form either a rectangle or a square. It cannot be a line")
 
 elif eastingDiff < 0 or northingDiff < 0:
-    print("The second point shoud be located at the upper right of the first point")
+    print("The second point shoud be located at a upper right location of the first point")
 
 else:
-    # Assuming northing_distance and easting_distance are defined earlier in the program
+    # Check the flight direction. Flight lines always run parallel to the larger dimension of the study area.
     if northingDiff > eastingDiff:
         flightDirection = "StoN"
         print("The flight direction will be from South to North")
@@ -88,20 +105,81 @@ else:
     else:
         print("The flight direction will be from South to North")
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+  
 
 
 
+#*********************************************************************************************************************************************#
+# #Aerial Survey Flight Plan
+# # date stared: November 25, 2023
+# #Last Modified: december 05, 2023
+# #Created by Alison Cooke, for Group 2 section 61 GEOM 67
+# #this section of code is for elevation, photoscale, endlap and sidelap input from the user
 
+#get input from user, must be in meters and within a range o 45 meters and 450 meters becasue that is the 
+#elevation numbers taken from this site https://en-ca.topographic-map.com/map-kc957/Canada/?center=44.19894%2C-78.61679&zoom=10&popup=49.55373%2C-49.43848
+elevationUnits = input('Please enter elevatio units, M or Ft: ') 
 
-
-
-
-
-
-
-
-
+if (elevationUnits.upper() == 'M'): 
+    # lowest land elevation on Earth is -420 meters, and highest land elevation is +8,848 meters.
+    elevation = float(input("Please provide ground elevation in a range from -420 m to +8848 m: "))
     
+else: 
+    elevationFt = float(input ("What is the elevation in feet? "))
+    elevation = elevationFt * 0.3048
+   
+if elevation < -420 or elevation > 8848: 
+    print("Invalid elevation. Please re-run this program with a valid elevation value between -420m and + 8848m, both ends excluded")
+else:                             
+    scaleRatio = int(input("Please give you desired photo scale in 1 to ___: ")) 
+    photoScale = 1 / scaleRatio
+    if photoScale > 1 or photoScale < 0:                  # try except
+        print("Invalid scale. Please re-run this program with a valid scale between 0 and 1, both ends excluded")
+    else:
+        endlap = int(input("Please give desired endlap in percent: "))
+        if endlap <= 0 or endlap >= 100:
+                print("Invalid end lap. Please re-run this program with a valid endlap value between 1 and 100, both ends excluded")
+        else: 
+            sidelap = int(input("Please give desired sidelap in percent: "))
+            if sidelap <= 0 or endlap >= 100:
+                print("Invalid side lap. Please re-run this program with a valid endlap value between 1 and 100, both ends excluded")
+            else:
+                print("Run rest of defined programs")
+
+
+
+# #*********************************************************************************************************************************************#
+
+# Calcalate ground area of the surveyed area
+surveyAreaSize = northingDiff * eastingDiff
+
+# Calculate ground coverage distance in one dimension and ground coverage area of a single image
+# sensorLength is in mm, and imageGroundCoverageLength is in m
+imageGroundCoverageLength = (sensorLength / photoScale) / 1000 # meters
+imageGroundCoverageArea = imageGroundCoverageLength ** 2 # square meters
+
+print("The ground area coverage of one aerial photo is: " + str(imageGroundCoverageArea) + "sqaure meters")
+
+# Calculate the relative flight height
+relFlightHeight = focalLength / photoScale
+
+# Calculate airbase (distance between two successive images along the same Flight Line)
+airbase = imageGroundCoverageLength * ((50 + 50 - endlap) / 100)
+
+# Calculate number of photographs required in one flight line
+photosOneLine = math.ceil(imageGroundCoverageLength / airbase) + 1
+
+# Calculate flight line spacing: distance between each flight line
+flightLineSpacing = imageGroundCoverageLength * ((50 + 50 - sidelap) / 100)
+
+# Calculate total number of flight lines
+totalFlightLines = math.ceil(imageGroundCoverageLength / flightLineSpacing)
+
+# Calculate total number of photographs required to cover the entire surveyed area
+totalPhotos = photosOneLine * totalFlightLines
+
+# # # # # # 
 
 def calImageGroundCoverageArea(ImageGroundCoverageLength):
      
@@ -144,97 +222,12 @@ def calStartEndCoordinates():
 
 
 
-# Difference in 
-
-### IF the two given points form a line but not a rectangle or a square THEN
-# Check if the given two points form a rectangle
-
-
-
-# Ground area of the surveyed area
-surveyAreaSize = northingDiff * eastingDiff
-
-# Image size
-imageLength = int(input("Please enter the number of horizontal pixels of the image: "))
-imageWidth = int(input("Please enter the number of vertical pixels of the image: "))
-
-# Ground Sample Distance i.e. resolution, the ground distance the one pixel in the image represents
-groundSampleDistance = int(input("Please enter the desired resolution of the aerial photographs in cm/px: "))
-# groundSampleDistance = (sensorWidth * relFlightHeight) / (focalLength * imageWidth)
-# groundSampleDistance2 = (sensorLength * relFlightHeight) / (focalLength * imageLength)
-
 # Calculate relative flight heigth i.e. height above the surveyed area
 # Scale = Focal Length / Relative Flight Height
 # Ground Sample Distance = (Sensor Width in mm x Relative Flight Height in cm) / (Focal Length in mm x Image Width in pixels) in cm/pixel 
 relFlightHeight = (groundSampleDistance * focalLength * imageWidth / sensorLength)
 
-#*********************************************************************************************************************************************#
-# #Aerial Survey Flight Plan
-# # date stared: November 25, 2023
-# #Last Modified: december 05, 2023
-# #Created by Alison Cooke, for Group 2 section 61 GEOM 67
-# #this section of code is for elevation, photoscale, endlap and sidelap input from the user
 
-#get input from user, must be in meters and within a range o 45 meters and 450 meters becasue that is the 
-#elevation numbers taken from this site https://en-ca.topographic-map.com/map-kc957/Canada/?center=44.19894%2C-78.61679&zoom=10&popup=49.55373%2C-49.43848
-elevationUnits = input('Please enter elevatio units, M or Ft: ') 
-
-if (elevationUnits.upper() == 'M'): 
-    elevation = float(input("Please provide ground elevation in a range of 45 m - 1000 m: "))
-
-else: 
-    elevationFt = float(input ("what is the elevation in feet? "))
-    elevation = elevationFt * 0.3048
-   
-if elevation >= -420 and elevation <= 8848:                               # lowest land elevation on Earth is -420 meters, and highest land elevation is +8,848 meters 
-    scaleRatio = float(input("Please give you desired photo scale in 1 to ___: ")) 
-    photoScale = 1 / scaleRatio
-    if photoScale > 1 or photoScale < 0:                  # try except
-         print("End")
-    else:
-        endlap = int(input("Please give desired endlap in percent: "))
-        if endlap < 1 or endlap >= 100:
-                print("endlap invalid")
-
-        else: 
-            sidelap = int(input("Please give desired sidelap in percent: "))
-
-            if sidelap < 1 or sidelap >= 100:
-                print("Side lap invalid")
-            else:
-                print ("Run rest of defined programs")
-else:
-        print("Elevation invalid")
-
-
-#*********************************************************************************************************************************************#
-
-imageGroundCoverageLength = sensorLength / photoScale 
-imageGroundCoverageArea = imageGroundCoverageLength ** 2
-
-
-
-
-# Calculate scale
-scale = focalLength / relFlightHeight
-
-# Percentage of side lap
-sideLap = int("Please enter the percentage of side lap: ")
-endLap = int("Please enter the percentage of end lap: ")
-
-# Calculate ground area coverage of a single photograph
-imageGroundLength_mm = sensorLength / scale
-imageGroundLength_m = imageGroundLength_mm * 1000
-imageGroundWidth_mm = sensorWidth / scale
-imageGroundWidth_m = imageGroundWidth_mm * 1000
-imageGroundAreaCoverage_m2 = imageGroundLength_m * imageGroundWidth_m
-print("The ground area coverage of one aerial photo is: " + str(imageGroundAreaCoverage_m2) + "sqaure meters")
-
-# Flight line spacing: distance between each flight line
-flightLineSpacing = imageGroundLength_m * ((50 + 50 - sideLap) / 100)
-
-# Number of flight lines
-num_flightLines = math.ceil((surveyAreaLength - imageGroundLength_m) / flightLineSpacing) / (flightLineSpacing)
 
 # #*************************************************************************************************************************#
 # # # date stared: November 25, 2023
