@@ -65,7 +65,36 @@ def calculateSurveyArea(eastingUpperRight, eastingLowerLeft, northingUpperRight,
     surveySize = eastingDiff * northingDiff
     return eastingDiff, northingDiff, surveySize
 
-# 
+# Calculate the ground coverage distance and area of one signle photograph
+def imageGroundCover(sensorDimension, imageScale):
+    # Calculate ground coverage distance in one dimension and ground coverage area of a single image
+    # sensorLength is in mm, and imageGroundCoverageLength is in m
+    imageGroundCoverLength = (sensorDimension / imageScale) / 1000 # meters
+    imageGroundCoverSize = imageGroundCoverLength ** 2 # square meters
+    return imageGroundCoverLength, imageGroundCoverSize
+
+# Calculate flight height both relative to ground elevation and mean sea level
+def flightHeight(focusDimension, imageScale, groundElevation):
+    relAltitude = (focusDimension / imageScale) / 1000
+    geoAltitude = relAltitude + groundElevation
+    return relAltitude, geoAltitude
+
+# Calculate the gap between centers of two successive images along one flight line, and gap between centers between two 
+# neighboring flight lines.
+# Airbase is image gap; Flight line spacing is flight line gap
+def flightGaps(imageGroundCoverLength, ENDlap, SIDElap):
+    imageGap = imageGroundCoverLength * ((50 + 50 - ENDlap) / 100)
+    flightLineGap = imageGroundCoverLength * ((50 + 50 - SIDElap) / 100)
+    return imageGap, flightLineGap
+
+# Calculate the number of flight lines needed to cover the entire surveyed area, number of photographs required for one 
+# flight line, and for the entire surveted area.
+def flightLinesAndPhotos(surveyAreaShort, flightLineGap, surveyAreaLong, imageGap):
+    flightLinesTotal = math.ceil(surveyAreaShort / flightLineGap) + 1
+    photosNo = math.ceil(surveyAreaLong / imageGap) + 1
+    totalPhotos = flightLinesTotal * photosNo
+    return flightLinesTotal, photosNo, totalPhotos
+
 
 
 # # # def functions ends here # # #
@@ -133,18 +162,25 @@ else:
     # Check the flight direction. Flight lines always run parallel to the larger dimension of the study area.
     if northingDist > eastingDist:
         flightDirection = "StoN"
+        surveyAreaWidth = eastingDist
+        surveyAreaLength = northingDist
         print("The flight direction will be from South to North")
     elif northingDist < eastingDist:
         flightDirection = "WtoE"
+        surveyAreaWidth = northingDist
+        surveyAreaLength = eastingDist
         print("The flight direction will be from West to East")
     else:
+        flightDirection = "StoN"
+        surveyAreaWidth = eastingDist
+        surveyAreaLength = northingDist
         print("The flight direction will be from South to North")
 # # # OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK # # #
 
   
 
 
-
+# # # OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK # # #
 # #*********************************************************************************************************************************************#
 # #Aerial Survey Flight Plan
 # # date stared: November 25, 2023
@@ -180,30 +216,15 @@ else:
                 print("Invalid side lap. Please re-run this program with a valid endlap value between 1 and 100, both ends excluded")
             else:
                 print("Run rest of defined programs")
-
-
-
 # # #*********************************************************************************************************************************************#
+# # # OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK # # #
 
-# Calculate the ground coverage distance and area of one signle photograph
-def imageGroundCover(sensorDimension, imageScale):
-    # Calculate ground coverage distance in one dimension and ground coverage area of a single image
-    # sensorLength is in mm, and imageGroundCoverageLength is in m
-    imageGroundCoverLength = (sensorDimension / imageScale) / 1000 # meters
-    imageGroundCoverSize = imageGroundCoverLength ** 2 # square meters
-    return imageGroundCoverLength, imageGroundCoverSize
-
+# # # OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK # # #
 # Calculate the ground coverage distance and area of one signle photograph using the imageGroundCover function.
 imageGroundCoverList = imageGroundCover(sensorLength, photoScale)
 imageGroundCoverDistance = imageGroundCoverList[0]
 imageGroundCoverArea = imageGroundCoverList[1]
 print("The ground area coverage of one aerial photo is: " + str("%.2f" % imageGroundCoverArea) + " sqaure meters")
-
-# Calculate flight height both relative to ground elevation and mean sea level
-def flightHeight(focusDimension, imageScale, groundElevation):
-    relAltitude = (focusDimension / imageScale) / 1000
-    geoAltitude = relAltitude + groundElevation
-    return relAltitude, geoAltitude
 
 # Calculate flight height both relative to ground elevation and mean sea level using the flightHeight function
 flightHeightList = flightHeight(focalLength, photoScale, elevation)
@@ -213,14 +234,6 @@ print(relFlightHeight)
 print(geoFlightHeight)
 
 # Calculate the gap between centers of two successive images along one flight line, and gap between centers between two 
-# neighboring flight lines.
-# Airbase is image gap; Flight line spacing is flight line gap
-def flightGaps(imageGroundCoverLength, ENDlap, SIDElap):
-    imageGap = imageGroundCoverLength * ((50 + 50 - ENDlap) / 100)
-    flightLineGap = imageGroundCoverLength * ((50 + 50 - SIDElap) / 100)
-    return imageGap, flightLineGap
-
-# Calculate the gap between centers of two successive images along one flight line, and gap between centers between two 
 # neighboring flight lines using the flightGaps function.
 flightGapsList = flightGaps(imageGroundCoverDistance, endlap, sidelap)
 airbase = flightGapsList[0]
@@ -228,59 +241,30 @@ flightLineSpacing = flightGapsList[1]
 print(airbase)
 print(flightLineSpacing)
 
-
-# # Calculate number of photographs required in one flight line
-# photosOneLine = math.ceil(imageGroundCoverageLength / airbase) + 1
-
-
-# # Calculate total number of flight lines
-# totalFlightLines = math.ceil(imageGroundCoverageLength / flightLineSpacing) + 1
-
-# # Calculate total number of photographs required to cover the entire surveyed area
-# totalPhotos = photosOneLine * totalFlightLines
-
-# # # # # # # # # 
-
-
-
-
-
-# def calNoOfPhotoIn1FlightLine(surveyAreaLength,Airbase):
-#     NoOfPhotoIn1FlightLine=round((surveyAreaLength/Airbase)+1)
-#     return NoOfPhotoIn1FlightLine
-
-# def calFlightLineSpacing():
-#  FlightLineSpacing=ImageGroundCoverageWidth * ((50 + 50 - PercentageOfSideLap) / 100)
-#  return flightLineSpacing
-
-# def calNoOfFlightLines(surveyAreaWidth,flightLineSpacing):
-#     NoOfFlightLines=Round((SurveyedAreaWidth / FlightLineSpacing) + 1 )
-#     return NoOfFlightLines
-
-
-# def calTotalNoOfPhoto(NoOfPhotoIn1FlightLine,calNoOfFlightLines):
-#    TotalNoOfPhoto=NoOfPhotoIn1FlightLine*NoOfFlightLines
-#    return TotalNoOfPhoto
-
-
-
-
-
-
-
+# Calculate the number of flight lines needed to cover the entire surveyed area, number of photographs required for one 
+# flight line, and for the entire surveted area using the flightLinesAndPhotos function.
+flightLinesPhotosList = flightLinesAndPhotos(surveyAreaWidth, flightLineSpacing, surveyAreaLength, airbase)
+totalFlightLines = flightLinesPhotosList[0]
+photosPerLine = flightLinesPhotosList[1]
+totalPhotos = flightLinesPhotosList[2]
+print(totalFlightLines)
+print(photosPerLine)
+print(totalPhotos)
+# # # OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK # # #
 
 # # #*************************************************************************************************************************#
-# # # # date stared: November 25, 2023
-# # # #Last Modified: december 05, 2023
-# # # #Created by Alison Cooke, for Group 2 section 61 GEOM 67
-# # #display at end of Def functions
+# # date stared: November 25, 2023
+# #Last Modified: december 05, 2023
+# #Created by Alison Cooke, for Group 2 section 61 GEOM 67
+#display at end of Def functions
 
-# # print("The survey, ", projectTitle)
-# # print ("The survey was done, ", surveyDate)
-# # print("Surveyors name: ", surveyorName)
-# # #displaying the name date and title of the survey before the resulting height, number of photos and number of laps
-# # print ("Your flight height is: ", fcalFlightHeight)
-# # print ("The number of Laps made", numberLaps) #is this number of lines or number of laps taken?
-# # print ("the total number of pictures taken for this survey: ", totalphotographstaken) 
-# # #still need to change the variable names so they match the other variables 
+print("The survey, ", projectTitle)
+print("The survey was done on, ", surveyDate)
+print("Surveyors name: ", surveyorName)
+#displaying the name date and title of the survey before the resulting height, number of photos and number of laps
+print ("Your flight height is: ", geoFlightHeight)
+print ("The number of lines made", totalFlightLines) #is this number of lines or number of laps taken?
+print ("the total number of pictures taken for this survey: ", totalPhotos) 
+#still need to change the variable names so they match the other variables 
 # # #******************************************************************************************************************************#
+
