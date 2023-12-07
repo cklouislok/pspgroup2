@@ -2,7 +2,7 @@
 #Group 2 section 61, GEOM 67 Problem Solviong and Programing
 #Date last modified: December 06, 2023
 #Authors of application and contribution:
-#Louis Lok-
+#Chi Kin Lok-
 #Alison Cooke- user inputs for elevation, photo scale, end lap and side lap as well as final out put display, comments and editing 
 #Athulya Sabu-
 #Dennis Kurian-
@@ -18,7 +18,7 @@
 #Inputs: Name of survey, name of surveyor, date of survey, UTM zone, Coordinates of bottom left and top right corners, elevation in meters, photo scale, side lap and end lap
 #Output: Fleight height, number of photos taken, number of lines in survey, title of survey, date, and surveyors name. the final output it a csv file and exported arcpy coordinates
 #Team members implimentation contribution:
-#Louis Lok-
+#Chi Kin Lok-
 #Alison Cooke: Testing output, editing, comments
 #Athulya Sabu-
 #Dennis Kurian-
