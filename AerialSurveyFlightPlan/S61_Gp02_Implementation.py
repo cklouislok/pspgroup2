@@ -447,13 +447,13 @@ except Exception:
     print("*************************************************************************************")
 # # # # # Program Ends Here # # # # #
 
-# hidden from output
-print("Current working directory is :" + cwd)
-print("The ground area coverage of one aerial photo is: " + str("%.2f" % imageGroundCoverArea) + " sqaure meters")
-# print("Relative flight height: ", relFlightHeight)
-print("Flight height as per mean sea level: ", geoFlightHeight)
-print("Airbase: ", airbase)
-print("Flight line spacing: ", flightLineSpacing)
-print("Total number of flight lines: ", totalFlightLines)
-print("Number of photos per line: ", photosPerLine)
-print("Total number of photos: ", totalPhotos)
+# # hidden from output
+# print("Current working directory is :" + cwd)
+# print("The ground area coverage of one aerial photo is: " + str("%.2f" % imageGroundCoverArea) + " sqaure meters")
+# # print("Relative flight height: ", relFlightHeight)
+# print("Flight height as per mean sea level: ", geoFlightHeight)
+# print("Airbase: ", airbase)
+# print("Flight line spacing: ", flightLineSpacing)
+# print("Total number of flight lines: ", totalFlightLines)
+# print("Number of photos per line: ", photosPerLine)
+# print("Total number of photos: ", totalPhotos)
