@@ -2,11 +2,12 @@
 # Group 2 section 61, GEOM 67 Problem Solviong and Programing
 # Date last modified: December 07, 2023
 # Authors of application and contribution:
-# Chi Kin Lok-
+# Chi Kin Lok- formulas/ defined functions, arcpy, csv export, error handling, set constants
 # Alison Cooke- assumptions, limitations, user inputs for elevation, photo scale, end lap and side lap as well as final out put display, some comments and some editing 
-# Athulya Sabu-
-# Dennis Kurian-
+# Athulya Sabu- user inputs
+# Dennis Kurian- intermediate/not displyed formulas
 # AshwinBalaji Srinivasan-
+
 # The purpose of this code is to create a survey flight plan to be follwed by a drone used by a surveyor. 
 # This code will be used to create a rectangular survey flight plan.
 # Program structure: Recieveing input from user, to create a csv file that will be imported into an ArcGIS 
@@ -17,15 +18,17 @@
 #              the survey is being done by a rotary wing drone, over a flat area with no varying elevation allowing for a 
 #              consistant altitude. it is assumed the flight will start at the bottom left of the rectangular survey plan.
 #              it is also a ssumed the drone is flying at a consistant. It is assumed the start and end and all the coordinates in btween have to be in the same UTM zone  
+#              it is assumed that the person using this flight program has an understanding of coordinates and UTM zones 
 
 # Limitations: must be a rectangualr survey area, with a consistant fleight height and elevation. it is limited to a north to southward direction flight plan, 
-#              the coordinates must then be diagonal to eachother to confirm it is a rectangular flight plan, must have the coordinates in the same UTM Zone.
+#              the coordinates must then be diagonal to eachother to confirm it is a rectangular flight plan, must have the coordinates in the same UTM Zone.\
+#              it is a limitation that the user must change projection to suit the coordinates in the exported feature class in ArcGIS pro
 
 # Known Problem 1: Program does not validate the UTM Easting and Northing entered by the user. This could produce unrealistic 
 #                  results for the coordinate output. 
 # Known Problem 2: The output file layer name is not make new but rather replacing the old layer name
 # Known Problem 3: no restrictions on utm coordinates being the correct length and negatives are not restricted
-# Known Problem 4: if the coordinates are not in the same UTM zone the program will still run even though it is not supposed to
+# Known Problem 4: if the coordinates are not in the same UTM zone the program will still run even though it is not supposed to, the arcGIS project file does not change the projection.  
 
 # Inputs: Name of survey, name of surveyor, date of survey, UTM zone, Coordinates of bottom left and top right corners, 
 #         elevation in meters, photo scale, side lap and end lap
@@ -33,11 +36,11 @@
 #         The file output it a csv file and exported shape file, arcGIS project file
 
 # Team members implimentation contribution:
-# Chi Kin Lok-
-# Alison Cooke: User input for elevation, photoscale, side lap and endlap, ranges for elevation and sidelap and end lap, helped with error handling, comments on some functions and comment block at head of code
-# Athulya Sabu-
-# Dennis Kurian-
-# AshwinBalaji Srinivasan-
+# Chi Kin Lok- amalgamation of design, over all flow control, editing, comments, quality control, debugging  
+# Alison Cooke: User input for elevation, photoscale, side lap and endlap, ranges for elevation and sidelap and end lap, error handling, debugging, comments on some functions and comment block at head of code
+# Athulya Sabu- testing values, debugging
+# Dennis Kurian- testing values, debugging
+# AshwinBalaji Srinivasan-testing values, debugging
 
 # # # # # Program Starts Here # # # # #  
 
