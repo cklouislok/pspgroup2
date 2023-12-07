@@ -24,7 +24,7 @@
 #              The first photo will be taken at the bottom left corner of the survey area. Flight lines always run parallel to the larger dimension of the study area (i.e. length)
 # Limitations: must be a rectangualr survey area, with a consistant fleight height and elevation. it is limited to a north to southward direction flight plan, 
 #              the coordinates must then be diagonal to eachother to confirm it is a rectangular flight plan, must have the coordinates in the same UTM Zone.
-#              it is a limitation that the user must change projection to suit the coordinates in the exported feature class in ArcGIS pro. Altitude is calculated so user can not put
+#              it is a limitation that the user must change projection of the map frame to suit the coordinates in the exported feature class in ArcGIS pro. Altitude is calculated so user can not put
 #              an unrealiztics fleight height
 
 # Known Problem 1: Program does not validate the UTM Easting and Northing entered by the user. This could produce unrealistic 
