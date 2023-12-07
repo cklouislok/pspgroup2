@@ -6,7 +6,7 @@
 # Alison Cooke- assumptions, limitations, user inputs for elevation, photo scale, end lap and side lap as well as final out put display, some comments and some editing 
 # Athulya Sabu- user inputs
 # Dennis Kurian- intermediate/not displyed formulas
-# AshwinBalaji Srinivasan-
+# AshwinBalaji Srinivasan- toolbox testing ArcGIS, checking area shape
 
 # The purpose of this code is to create a survey flight plan to be follwed by a drone used by a surveyor. 
 # This code will be used to create a rectangular survey flight plan.
@@ -40,7 +40,7 @@
 # Alison Cooke: User input for elevation, photoscale, side lap and endlap, ranges for elevation and sidelap and end lap, error handling, debugging, comments on some functions and comment block at head of code
 # Athulya Sabu- testing values, debugging
 # Dennis Kurian- testing values, debugging
-# AshwinBalaji Srinivasan-testing values, debugging
+# AshwinBalaji Srinivasan-testing values, debugging, testing ArcGIS toolbox
 
 # # # # # Program Starts Here # # # # #  
 
