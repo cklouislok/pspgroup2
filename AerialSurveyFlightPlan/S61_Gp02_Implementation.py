@@ -1,9 +1,9 @@
 ########### Aerial Survey Flight Plan ###########
 # Group 2 section 61, GEOM 67 Problem Solviong and Programing
-# Date last modified: December 06, 2023
+# Date last modified: December 07, 2023
 # Authors of application and contribution:
 # Chi Kin Lok-
-# Alison Cooke- user inputs for elevation, photo scale, end lap and side lap as well as final out put display, comments and editing 
+# Alison Cooke- assumptions, limitations, user inputs for elevation, photo scale, end lap and side lap as well as final out put display, some comments and some editing 
 # Athulya Sabu-
 # Dennis Kurian-
 # AshwinBalaji Srinivasan-
@@ -11,14 +11,24 @@
 # This code will be used to create a rectangular survey flight plan.
 # Program structure: recieveing input from user, to create a csv file that will be imported into an ArcGIS 
 # project to convert the coorindates into points, and export a shapefile containing the flight line end points. 
-# Assumptions: it is assumed the camera being used has a set focal length and sensor length, as well is is
+# Assumptions: It is assumed the camera being used has a set focal length and sensor length, it is also assumed that
+#the survey is being done by a rotary wing drone, over a flat area with no varying elevation allowing for a 
+#consistant altitude. it is assumed the flight will start at the bottom left of the rectangular survey plan.
+#it is also a ssumed the drone is flying at a consistant  
+
 # Limitations: must be a rectangualr survey area, with a consistant fleight height and elevation. it is limited to a north to southward direction flight plan, 
 # the coordinates must then be diagonal to eachother to confirm it is a rectangular flight plan
+
 # Known Problem 1: Program does not validate the UTM Easting and Northing entered by the user. This could produce unrealistic 
 # results for the coordinate output. 
-# Known Problem 2: 
-# Inputs: Name of survey, name of surveyor, date of survey, UTM zone, Coordinates of bottom left and top right corners, elevation in meters, photo scale, side lap and end lap
-# Output: Fleight height, number of photos taken, number of lines in survey, title of survey, date, and surveyors name. the final output it a csv file and exported arcpy coordinates
+# Known Problem 2: The output file layer name is not make new but rather replacing the old layer name
+#Known Problem 3: no restrictions on utm coordinates being the correct length and negatives are not restricted
+
+# Inputs: Name of survey, name of surveyor, date of survey, UTM zone, Coordinates of bottom left and top right corners, 
+#       elevation in meters, photo scale, side lap and end lap
+# Output: Fleight height, number of photos taken, number of lines in survey, title of survey, date, and surveyors name. 
+        #The file output it a csv file and exported shape file, arcGIS project file
+
 # Team members implimentation contribution:
 # Chi Kin Lok-
 # Alison Cooke: Testing output, editing, comments
