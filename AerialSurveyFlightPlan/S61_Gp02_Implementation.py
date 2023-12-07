@@ -1,10 +1,11 @@
 ########### Aerial Survey Flight Plan ###########
 # Group 2 section 61, GEOM 67 Problem Solviong and Programing
 # Date last modified: December 07, 2023
+
 # Authors of application and contribution:
 # Chi Kin Lok- formulas/ defined functions, arcpy, csv export, error handling, set constants
 # Alison Cooke- assumptions, limitations, user inputs for elevation, photo scale, end lap and side lap as well as final out put display, some comments and some editing 
-# Athulya Sabu- user inputs
+# Athulya Sabu- user inputs, setting constants, string manipulations
 # Dennis Kurian- intermediate/not displyed formulas
 # AshwinBalaji Srinivasan- toolbox testing ArcGIS, checking area shape
 
