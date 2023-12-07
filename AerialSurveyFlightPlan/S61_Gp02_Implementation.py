@@ -456,8 +456,11 @@ except IndexError:
 except ZeroDivisionError:
     print("Input of zero is not allowed. Please re-run this program with valid values.")
 except UnboundLocalError:
-    print("Please use standard formating")
+    print("Please use standard formating.")
     print("*************************************************************************************")
-
+except Exception as errorMsg:
+    print(errorMsg)
+    print("Please re-try.")
+    print("*************************************************************************************")
 # # # # # Program Ends Here # # # # #
 
