@@ -1,6 +1,6 @@
 ########### Aerial Survey Flight Plan ###########
 # Group 2 Section 61, GEOM 67 Problem Solving and Programming
-# Date last modified: December 07, 2023 6:42 pm
+# Date last modified: December 7, 2023 9:13 pm
 
 # Authors of application and contribution:
 # Chi Kin Lok- modify formulas and defined functions, calculate coordinates and csv export, ArcPy, error handling, set messages
@@ -460,7 +460,7 @@ in UTM format (XXXXXX.XX, YYYYYYY.YY): ")
                             del aprx
 
                             # DISPLAY message to let user know the shapefile for plotted points
-                            print("Flight line start and end points have been plotted and saves in EndPoint.shp at \Output folder.")
+                            print("Flight line start and end points have been plotted and saved in EndPoint.shp at \Output folder.")
                             print("*************************************************************************************")
                             # # # # # ArcPy module ends here # # # # # 
                             
@@ -486,17 +486,6 @@ except UnboundLocalError:
     print("*************************************************************************************")
 except Exception as errorMsg:
     print(errorMsg)
-    print("Please re-try.")
+    print("Please close the ArcGIS Pro project and CSV file and try again.")
     print("*************************************************************************************")
 # # # # # # # # # # # # # # # # # # # # Program Ends Here # # # # # # # # # # # # # # # # # # # # 
-
-# hidden from output
-print("Current working directory is :" + cwd)
-print("The ground area coverage of one aerial photo is: " + str("%.2f" % imageGroundCoverArea) + " sqaure meters")
-# print("Relative flight height: ", relFlightHeight)
-print("Flight height as per mean sea level: ", geoFlightHeight)
-print("Airbase: ", airbase)
-print("Flight line spacing: ", flightLineSpacing)
-print("Total number of flight lines: ", totalFlightLines)
-print("Number of photos per line: ", photosPerLine)
-print("Total number of photos: ", totalPhotos)
